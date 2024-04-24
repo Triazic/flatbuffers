@@ -21,6 +21,8 @@ function main() {
 
     let unpacked = Test.D.getRootAsD(fbb.dataBuffer()).unpack();
     assert.equal(JSON.stringify(unpacked), JSON.stringify(d));
+
+    console.log('FlatBuffers union underlying type test: completed successfully');
 }
 
 main()
