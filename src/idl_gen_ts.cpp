@@ -1521,6 +1521,9 @@ class TsGenerator : public BaseGenerator {
     obj_api_class += "export class ";
     obj_api_class += GetTypeName(struct_def, /*object_api=*/true);
     obj_api_class += " implements flatbuffers.IGeneratedObject {\n";
+    if (parser_.opts.ts_gen_discriminated_unions) {
+      std::cout << "Hello, world!" << std::endl;
+    }
     obj_api_class += constructor_func;
     obj_api_class += pack_func_prototype + pack_func_offset_decl +
                      pack_func_create_call + "\n}";
