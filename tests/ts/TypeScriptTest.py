@@ -141,8 +141,7 @@ check_call(NODE_CMD + ["JavaScriptUnionVectorTest"])
 check_call(NODE_CMD + ["JavaScriptFlexBuffersTest"])
 check_call(NODE_CMD + ["JavaScriptComplexArraysTest"])
 check_call(NODE_CMD + ["JavaScriptUnionUnderlyingTypeTest"])
-check_call(TSC_CMD + ["TypeScriptDiscriminatedUnionsTest.ts"]) # check for typescript compiler errors
-check_call(NODE_CMD + ["TypeScriptDiscriminatedUnionsTest.js"]) # test runtime
+check_call(NODE_CMD + ["TypeScriptDiscriminatedUnionsTest.js"]) # test runtime usage, types are implicitly tested in the previous tsc call
 
 print("Running old v1 TypeScript Tests...")
 check_call(NODE_CMD + ["JavaScriptTestv1.cjs", "./monster_test_generated.cjs"])

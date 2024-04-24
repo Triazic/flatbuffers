@@ -17,7 +17,6 @@
     "union_vector/**/*.ts",
     "arrays_test_complex/**/*.ts",
     "union_underlying_type_test.ts",
-    "TypeScriptDiscriminatedUnionsTest.ts",
-    "TypeScriptDiscriminatedUnionsTest.ts",
+    "discriminated_unions/DiscriminatedUnionsTest.ts",
   ]
 }
