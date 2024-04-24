@@ -123,7 +123,7 @@ flatc(
 )
 
 flatc(
-    options=["--ts", "--gen-object-api", "-o", "discriminated_unions/"],
+    options=["--ts", "--gen-object-api", "--ts-gen-discriminated-unions", "-o", "discriminated_unions/"],
     schema="./discriminated_unions/discriminated_unions.fbs"
 )
 

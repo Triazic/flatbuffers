@@ -700,6 +700,7 @@ struct IDLOptions {
   bool json_nested_flexbuffers;
   bool json_nested_legacy_flatbuffers;
   bool ts_flat_files;
+  bool ts_gen_discriminated_unions;
   bool ts_entry_points;
   bool ts_no_import_ext;
   bool no_leak_private_annotations;

@@ -245,6 +245,9 @@ const static FlatCOption flatc_options[] = {
     "ts_entry_points." },
   { "", "ts-entry-points", "",
     "Generate entry point typescript per namespace. Implies gen-all." },
+  { "", "ts-gen-discriminated-unions", "",
+    "Adds unique type identifiers to each generated object class for better discriminating between them. (requires "
+    "--gen-object-api)." },
   { "", "annotate-sparse-vectors", "", "Don't annotate every vector element." },
   { "", "annotate", "SCHEMA",
     "Annotate the provided BINARY_FILE with the specified SCHEMA file." },
@@ -629,6 +632,8 @@ FlatCOptions FlatCompiler::ParseFromCommandLineArguments(int argc,
         opts.java_primitive_has_method = true;
       } else if (arg == "--cs-gen-json-serializer") {
         opts.cs_gen_json_serializer = true;
+      } else if (arg == "--ts-gen-discriminated-unions") {
+        opts.ts_gen_discriminated_unions = true;
       } else if (arg == "--flexbuffers") {
         opts.use_flexbuffers = true;
       } else if (arg == "--gen-jvmstatic") {
@@ -720,6 +725,11 @@ void FlatCompiler::ValidateOptions(const FlatCOptions &options) {
   if (opts.cs_gen_json_serializer && !opts.generate_object_based_api) {
     Error(
         "--cs-gen-json-serializer requires --gen-object-api to be set as "
+        "well.");
+  }
+  if (opts.ts_gen_discriminated_unions && !opts.generate_object_based_api) {
+    Error(
+        "--ts-gen-discriminated-unions requires --gen-object-api to be set as "
         "well.");
   }
 }
