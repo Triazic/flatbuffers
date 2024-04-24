@@ -4,7 +4,8 @@
     "lib": ["ES2020", "DOM"],
     "module": "NodeNext",
     "declaration": true,
-    "strict": true
+    "strict": true,
+    "esModuleInterop": true,
   },
   "include": [
     "monster_test.ts",
@@ -15,6 +16,8 @@
     "namespace_test/**/*.ts",
     "union_vector/**/*.ts",
     "arrays_test_complex/**/*.ts",
-    "union_underlying_type_test.ts"
+    "union_underlying_type_test.ts",
+    "TypeScriptDiscriminatedUnionsTest.ts",
+    "TypeScriptDiscriminatedUnionsTest.ts",
   ]
 }
