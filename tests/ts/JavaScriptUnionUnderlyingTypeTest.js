@@ -15,11 +15,15 @@ function main() {
     d.testVectorOfUnionType = [Test.ABC.A, Test.ABC.B, Test.ABC.C];
     d.testVectorOfUnion = [a, b, c];
 
+    // build d into binary
     let fbb = new flatbuffers.Builder();
     let offset = d.pack(fbb);
     fbb.finish(offset);
 
+    // unpack
     let unpacked = Test.D.getRootAsD(fbb.dataBuffer()).unpack();
+
+    // assert that the unpacked version of d is the same as d itself
     assert.equal(JSON.stringify(unpacked), JSON.stringify(d));
 
     console.log('FlatBuffers union underlying type test: completed successfully');

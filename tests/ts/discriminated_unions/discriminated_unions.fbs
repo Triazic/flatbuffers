@@ -1,0 +1,9 @@
+table A {
+    a: int;
+}
+table B {
+    b: float;
+}
+table C {
+    c: string;
+}
