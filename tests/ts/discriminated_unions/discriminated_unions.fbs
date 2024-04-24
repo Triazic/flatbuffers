@@ -1,3 +1,9 @@
+union ABC {
+    A,
+    B,
+    C,
+}
+
 table A {
     a: int;
 }

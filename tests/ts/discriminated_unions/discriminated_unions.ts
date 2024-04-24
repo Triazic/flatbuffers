@@ -3,5 +3,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/no-non-null-assertion */
 
 export { A, AT } from './a.js';
+export { ABC } from './abc.js';
 export { B, BT } from './b.js';
 export { C, CT } from './c.js';

@@ -1,2 +1,1 @@
 flatc --ts --gen-object-api -o discriminated_unions/ discriminated_unions/discriminated_unions.fbs
-node --loader ts-node/esm TypeScriptDiscriminatedUnionsTest.ts
