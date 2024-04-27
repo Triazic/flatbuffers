@@ -127,20 +127,20 @@ flatc(
     schema="./discriminated_unions/discriminated_unions.fbs"
 )
 
-# print("Running TypeScript Compiler...")
-# check_call(["tsc"])
-# print("Running TypeScript Compiler in old node resolution mode for no_import_ext...")
-# check_call(["tsc", "-p", "./tsconfig.node.json"])
+print("Running TypeScript Compiler...")
+check_call(["tsc"])
+print("Running TypeScript Compiler in old node resolution mode for no_import_ext...")
+check_call(["tsc", "-p", "./tsconfig.node.json"])
 
-# NODE_CMD = ["node"]
-# TSC_CMD = ["tsc"]
+NODE_CMD = ["node"]
+TSC_CMD = ["tsc"]
 
-# print("Running TypeScript Tests...")
-# check_call(NODE_CMD + ["JavaScriptTest"])
-# check_call(NODE_CMD + ["JavaScriptUnionVectorTest"])
-# check_call(NODE_CMD + ["JavaScriptFlexBuffersTest"])
-# check_call(NODE_CMD + ["JavaScriptComplexArraysTest"])
-# check_call(NODE_CMD + ["JavaScriptUnionUnderlyingTypeTest"])
+print("Running TypeScript Tests...")
+check_call(NODE_CMD + ["JavaScriptTest"])
+check_call(NODE_CMD + ["JavaScriptUnionVectorTest"])
+check_call(NODE_CMD + ["JavaScriptFlexBuffersTest"])
+check_call(NODE_CMD + ["JavaScriptComplexArraysTest"])
+check_call(NODE_CMD + ["JavaScriptUnionUnderlyingTypeTest"])
 
-# print("Running old v1 TypeScript Tests...")
-# check_call(NODE_CMD + ["JavaScriptTestv1.cjs", "./monster_test_generated.cjs"])
+print("Running old v1 TypeScript Tests...")
+check_call(NODE_CMD + ["JavaScriptTestv1.cjs", "./monster_test_generated.cjs"])
