@@ -815,6 +815,7 @@ struct IDLOptions {
         json_nested_flexbuffers(true),
         json_nested_legacy_flatbuffers(false),
         ts_flat_files(false),
+        ts_gen_discriminated_unions(false),
         ts_entry_points(false),
         ts_no_import_ext(false),
         no_leak_private_annotations(false),
