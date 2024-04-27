@@ -401,7 +401,8 @@ class TsGenerator : public BaseGenerator {
     code += "}";
 
     if (enum_def.is_union) {
-      if (parser_.opts.ts_gen_discriminated_unions) {
+      if (parser_.opts.generate_object_based_api && parser_.opts.ts_gen_discriminated_unions) {
+        std::cout << "405";
         code += GenUnionTStatement(enum_def.underlying_type);
       }
       code += GenUnionConvFunc(enum_def.underlying_type, imports);
@@ -1550,7 +1551,8 @@ class TsGenerator : public BaseGenerator {
     obj_api_class += "export class ";
     obj_api_class += GetTypeName(struct_def, /*object_api=*/true);
     obj_api_class += " implements flatbuffers.IGeneratedObject {\n";
-    if (parser_.opts.ts_gen_discriminated_unions) {
+    if (parser_.opts.generate_object_based_api && parser_.opts.ts_gen_discriminated_unions) {
+      std::cout << "1555";
       const auto unique_type_identifier = struct_def.defined_namespace->GetFullyQualifiedName(struct_def.name) + "T";
       // using _type as an identifier should be safe because flatbuffers fields cannot start with _
       obj_api_class += "_type = \"" + unique_type_identifier + "\" as const;\n";
