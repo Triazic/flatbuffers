@@ -993,22 +993,43 @@ class TsGenerator : public BaseGenerator {
       return "";
     }
 
-    // in the comments below, we will assume a union has been defined in the schema like:
-    // union ABC { A, B, C }
+    // for the following .fbs union:
+    // union Character {
+    //   MuLan: Attacker,
+    //   Rapunzel,
+    //   Belle: BookReader,
+    //   BookFan: BookReader,
+    //   Other: string,
+    //   Unused: string
+    // }
 
-    // we want to generate code like
-    // export type ABCT = 
-    //   | AT
-    //   | BT
-    //   | CT
+    // the below code will produce a TypeScript union like:
+    // export type CharacterT = 
+    //   | AttackerT
+    //   | RapunzelT
+    //   | BookReaderT
+    //   | BookReaderT
+    //   | string
+    //   | string
+
+    // TypeScript automatically dedupes this to AttackerT | RapunzelT | BookReaderT | string
+    // ie. a union of the concrete data types that could arise when working with unpacked Character objects
+
     const auto &enum_def = *union_type.enum_def;
-    std::string enum_name = enum_def.name; // ABC
-    std::string ret = "\n\nexport type " + enum_name + "T = \n"; // export type ABCT = 
+    std::string enum_name = enum_def.name; // Character
+    std::string ret = "\n\nexport type " + enum_name + "T = \n"; // export type CharacterT = 
     for (auto& it : enum_def.Vals()) {
         const auto &ev = *it;
         if (ev.IsZero()) { continue; }
-        std::string enum_case_name = ev.name; // A, B, C
-        ret += "  | " + enum_case_name + "T\n"; // | AT,  | BT,  | CT
+        const auto union_type = ev.union_type;
+        // union value type may only be table/struct/string
+        if (union_type.struct_def) {
+          std::string struct_name = union_type.struct_def->name; // Attacker, Rapunzel...
+          ret += "  | " + struct_name + "T\n"; // | AttackerT, | RapunzelT...
+        }
+        if (union_type.base_type == BASE_TYPE_STRING) {
+          ret += "  | string\n";
+        }
     }
     return ret;
   }

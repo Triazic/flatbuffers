@@ -119,6 +119,7 @@ if (process.argv[2] === 'build') {
     b: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
     c: 19,
     dUnderscore: '9007199254741000',
+    // _type: "MyGame.Example.InnerStructT" // if using --ts-gen-discriminated-unions, this line needs to be uncommented for equality
   }, 'Object in deep');
   assert.deepEqual(parsed?.cUnderscore.g, ['0', '0'], 'Last object');
 
