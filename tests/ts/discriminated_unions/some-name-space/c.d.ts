@@ -16,7 +16,7 @@ export declare class C implements flatbuffers.IUnpackableObject<CT> {
 }
 export declare class CT implements flatbuffers.IGeneratedObject {
     c: string | Uint8Array | null;
-    _type: "SomeNameSpace.CT";
+    $type: "SomeNameSpace.CT";
     constructor(c?: string | Uint8Array | null);
     pack(builder: flatbuffers.Builder): flatbuffers.Offset;
 }

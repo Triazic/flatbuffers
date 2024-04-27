@@ -63,7 +63,7 @@ unpackTo(_o: CT): void {
 }
 
 export class CT implements flatbuffers.IGeneratedObject {
-_type = "SomeNameSpace.CT" as const;
+$type = "SomeNameSpace.CT" as const;
 constructor(
   public c: string|Uint8Array|null = null
 ){}

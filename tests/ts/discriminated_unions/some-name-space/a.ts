@@ -61,7 +61,7 @@ unpackTo(_o: AT): void {
 }
 
 export class AT implements flatbuffers.IGeneratedObject {
-_type = "SomeNameSpace.AT" as const;
+$type = "SomeNameSpace.AT" as const;
 constructor(
   public a: number = 0
 ){}

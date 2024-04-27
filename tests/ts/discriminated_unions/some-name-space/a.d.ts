@@ -15,7 +15,7 @@ export declare class A implements flatbuffers.IUnpackableObject<AT> {
 }
 export declare class AT implements flatbuffers.IGeneratedObject {
     a: number;
-    _type: "SomeNameSpace.AT";
+    $type: "SomeNameSpace.AT";
     constructor(a?: number);
     pack(builder: flatbuffers.Builder): flatbuffers.Offset;
 }

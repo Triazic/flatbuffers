@@ -39,7 +39,7 @@ const assertNever = (x:never) => {
 // assert that once we have a general union case, we can type narrow down
 {
     const abc = new AT() as ABCT;
-    switch(abc._type) {
+    switch(abc.$type) {
         case "SomeNameSpace.AT": 
         {
             // compiler knows the type is "AT"

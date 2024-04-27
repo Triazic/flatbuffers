@@ -47,7 +47,7 @@ export class B {
 export class BT {
     constructor(b = 0.0) {
         this.b = b;
-        this._type = "SomeNameSpace.BT";
+        this.$type = "SomeNameSpace.BT";
     }
     pack(builder) {
         return B.createB(builder, this.b);

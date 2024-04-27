@@ -47,7 +47,7 @@ export class C {
 export class CT {
     constructor(c = null) {
         this.c = c;
-        this._type = "SomeNameSpace.CT";
+        this.$type = "SomeNameSpace.CT";
     }
     pack(builder) {
         const c = (this.c !== null ? builder.createString(this.c) : 0);
