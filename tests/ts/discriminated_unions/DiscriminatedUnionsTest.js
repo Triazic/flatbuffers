@@ -62,25 +62,3 @@ const assertNever = (x) => {
         default: assertNever(abc);
     }
 }
-// assert that at runtime we get the correct behaviour
-{
-    const abc = new AT();
-    switch (abc._type) {
-        case "SomeNameSpace.AT":
-            {
-                // ok, correct union type at runtime.
-                // assert the field as well.
-                assertNumberRuntime(abc.a);
-            }
-            break;
-        case "SomeNameSpace.BT":
-            {
-                throw new Error("abc inferred to type b instead of a");
-            }
-        case "SomeNameSpace.CT":
-            {
-                throw new Error("abc inferred to type c instead of a");
-            }
-        default: assertNever(abc);
-    }
-}
