@@ -1,1 +1,4 @@
-flatc --ts --gen-object-api -o discriminated_unions/ discriminated_unions/discriminated_unions.fbs
+cd ../..
+make -j
+cd tests/ts
+python3 TypeScriptTest.py

@@ -61,6 +61,7 @@ unpackTo(_o: BT): void {
 }
 
 export class BT implements flatbuffers.IGeneratedObject {
+_type = "SomeNameSpace.BT" as const;
 constructor(
   public b: number = 0.0
 ){}

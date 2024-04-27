@@ -2,9 +2,9 @@
 
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/no-non-null-assertion */
 
-import { A, AT } from './a.js';
-import { B, BT } from './b.js';
-import { C, CT } from './c.js';
+import { A, AT } from '../some-name-space/a.js';
+import { B, BT } from '../some-name-space/b.js';
+import { C, CT } from '../some-name-space/c.js';
 
 
 export enum ABC {
@@ -13,6 +13,12 @@ export enum ABC {
   B = 2,
   C = 3
 }
+
+export type ABCT = 
+  | AT
+  | BT
+  | CT
+
 
 export function unionToAbc(
   type: ABC,

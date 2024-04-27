@@ -401,6 +401,9 @@ class TsGenerator : public BaseGenerator {
     code += "}";
 
     if (enum_def.is_union) {
+      if (parser_.opts.ts_gen_discriminated_unions) {
+        code += GenUnionTStatement(enum_def.underlying_type);
+      }
       code += GenUnionConvFunc(enum_def.underlying_type, imports);
     }
 
@@ -983,6 +986,32 @@ class TsGenerator : public BaseGenerator {
     return namer_.Function("unionListTo", enum_def);
   }
 
+  std::string GenUnionTStatement(const Type &union_type) {
+    if (!union_type.enum_def) {
+      FLATBUFFERS_ASSERT(0);
+      return "";
+    }
+
+    // in the comments below, we will assume a union has been defined in the schema like:
+    // union ABC { A, B, C }
+
+    // we want to generate code like
+    // export type ABCT = 
+    //   | AT
+    //   | BT
+    //   | CT
+    const auto &enum_def = *union_type.enum_def;
+    std::string enum_name = enum_def.name; // ABC
+    std::string ret = "\n\nexport type " + enum_name + "T = \n"; // export type ABCT = 
+    for (auto& it : enum_def.Vals()) {
+        const auto &ev = *it;
+        if (ev.IsZero()) { continue; }
+        std::string enum_case_name = ev.name; // A, B, C
+        ret += "  | " + enum_case_name + "T\n"; // | AT,  | BT,  | CT
+    }
+    return ret;
+  }
+
   std::string GenUnionConvFunc(const Type &union_type, import_set &imports) {
     if (union_type.enum_def) {
       const auto &enum_def = *union_type.enum_def;
@@ -1522,7 +1551,9 @@ class TsGenerator : public BaseGenerator {
     obj_api_class += GetTypeName(struct_def, /*object_api=*/true);
     obj_api_class += " implements flatbuffers.IGeneratedObject {\n";
     if (parser_.opts.ts_gen_discriminated_unions) {
-      std::cout << "Hello, world!" << std::endl;
+      const auto unique_type_identifier = struct_def.defined_namespace->GetFullyQualifiedName(struct_def.name) + "T";
+      // using _type as an identifier should be safe because flatbuffers fields cannot start with _
+      obj_api_class += "_type = \"" + unique_type_identifier + "\" as const;\n";
     }
     obj_api_class += constructor_func;
     obj_api_class += pack_func_prototype + pack_func_offset_decl +
